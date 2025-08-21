@@ -1,4 +1,5 @@
-const { generateCaption } = require("../services/openaiService");
+// controllers/captionController.js
+const { generateCaption } = require("../services/aiService");
 
 const getCaption = async (req, res) => {
     const { imageUrl, style } = req.body;
@@ -11,7 +12,8 @@ const getCaption = async (req, res) => {
         const caption = await generateCaption(imageUrl, style);
         res.json({ caption });
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        console.error("Error in getCaption:", error);
+        res.status(500).json({ error: error.message || "An error occurred while generating the caption." });
     }
 };
 

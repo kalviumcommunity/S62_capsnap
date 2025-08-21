@@ -47,3 +47,9 @@ Thumbs.db
 
 # TypeScript
 *.tsbuildinfo
+
+package-lock.json
+yarn.lock   
+# Optional REPL history
+.repl_history
+package.json
