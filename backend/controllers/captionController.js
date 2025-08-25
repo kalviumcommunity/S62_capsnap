@@ -1,20 +1,30 @@
-// controllers/captionController.js
-const { generateCaption } = require("../services/aiService");
+// // controllers/captionController.js
+// const { generateCaption } = require("../services/aiService");
 
-const getCaption = async (req, res) => {
-    const { imageUrl, style } = req.body;
+// const getCaption = async (req, res) => {
+//     const { imageUrl, style } = req.body;
 
-    if (!imageUrl) {
-        return res.status(400).json({ error: "Image URL is required." });
-    }
+//     if (!imageUrl) {
+//         return res.status(400).json({ error: "Image URL is required." });
+//     }
 
-    try {
-        const caption = await generateCaption(imageUrl, style);
-        res.json({ caption });
-    } catch (error) {
-        console.error("Error in getCaption:", error);
-        res.status(500).json({ error: error.message || "An error occurred while generating the caption." });
-    }
-};
+//     try {
+//         const caption = await generateCaption(imageUrl, style);
+//         res.json({ caption });
+//     } catch (error) {
+//         console.error("Error in getCaption:", error);
+//         res.status(500).json({ error: error.message || "An error occurred while generating the caption." });
+//     }
+// };
 
-module.exports = { getCaption };
+// module.exports = { getCaption };
+
+// const { handleUserRequest } = require("../services/aiService");
+
+// app.post("/chat", async (req, res) => {
+//     const { message } = req.body;
+
+//     const result = await handleUserRequest(message);
+
+//     res.json(result);
+// });
