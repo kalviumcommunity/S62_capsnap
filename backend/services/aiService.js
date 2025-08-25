@@ -23,6 +23,8 @@ async function generateCaption(imageUrl, style) {
         ];
 
         // Build prompt
+        // using zero-shot prompting here
+        // zero-shot: no examples, just instructions
         const prompt = style
             ? `Generate exactly 5 captions for this image in a ${style} style. 
          Return only a JSON object in this format:
