@@ -23,12 +23,15 @@ async function generateCaption(imageUrl, style) {
         ];
 
         // Build prompt
-        // using zero-shot prompting here
-        // zero-shot: no examples, just instructions
+        // using one-shot prompting here
+        // showing an example caption in the desired style
         const prompt = style
-            ? `Generate exactly 5 captions for this image in a ${style} style. 
-         Return only a JSON object in this format:
-         { "captions": ["caption1", "caption2", "caption3", "caption4", "caption5"] }`
+            ? `Here is an example of a caption in ${style} style for an image:
+                Example: "When life gives you lemons, trade them for pizza."
+     
+                Now, generate exactly 5 captions for this image in the same ${style} style.
+                Return only a JSON object in this format:
+                { "captions": ["caption1", "caption2", "caption3", "caption4", "caption5"] }`
             : `Generate exactly 5 captions for this image. 
          Return only a JSON object in this format:
          { "captions": ["caption1", "caption2", "caption3", "caption4", "caption5"] }`;
