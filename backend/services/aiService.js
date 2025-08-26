@@ -23,11 +23,16 @@ async function generateCaption(imageUrl, style) {
         ];
 
         // Build prompt
-        // using one-shot prompting here
-        // showing an example caption in the desired style
+        // using multiple-shot prompting here
+        // showing several example captions in the desired style
         const prompt = style
             ? `Here is an example of a caption in ${style} style for an image:
-                Example: "When life gives you lemons, trade them for pizza."
+                Example1: "When life gives you lemons, trade them for pizza."
+                Example 2: "Pizza is the answer, no matter the question."
+                Example 3: "Coffee first, adulting later."
+                Example 4: "Friday nights are made for memes and midnight snacks."
+                Example 5: "Selfies are just proof that I exist in 4K."
+                Example 6: "Running late is my daily cardio."
      
                 Now, generate exactly 5 captions for this image in the same ${style} style.
                 Return only a JSON object in this format:
