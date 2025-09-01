@@ -2,11 +2,15 @@ import { useState } from 'react'
 import CaptionForm from './components/CaptionForm'
 import CaptionList from './components/CaptionList'
 import { Camera } from 'lucide-react'
+import axios from 'axios'
 
 
 
 function App() {
   const [captions, setCaptions] = useState([]);
+  const [generateFn, setGenerateFn] = useState(null);
+  const [loading, setLoading] = useState(false);
+  
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-purple-200 via-indigo-100 to-pink-200">
@@ -22,9 +26,9 @@ function App() {
           Turn Your Photos Into Captions Instantly ✨
         </h2>
 
-        <CaptionForm setCaptions={setCaptions} />
+        <CaptionForm setCaptions={setCaptions} setGenerateFn={setGenerateFn}setLoading={setLoading} loading={loading}  />
 
-        {captions.length > 0 && <CaptionList captions={captions} />}
+        {captions.length > 0 && <CaptionList captions={captions} onRegenerate={generateFn} loading={loading}  />}
       </main>
 
       {/* Footer */}

@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Copy, MessageSquareQuote } from "lucide-react";
+import { Copy, MessageSquareQuote ,RefreshCcw } from "lucide-react";
 
-function CaptionList({ captions }) {
+function CaptionList({ captions,onRegenerate,loading }) {
     const [copiedIndex, setCopiedIndex] = useState(null);
 
     const handleCopy = (caption, index) => {
@@ -43,6 +43,16 @@ function CaptionList({ captions }) {
                     </li>
                 ))}
             </ul>
+
+            <button
+                onClick={onRegenerate}
+                disabled={loading}
+                className="mt-6 w-full bg-gray-200 text-gray-700 font-semibold px-4 py-3 rounded-lg hover:bg-gray-300 transition flex justify-center items-center gap-2"
+            >
+                <RefreshCcw className="w-5 h-5" />
+                {loading ? "Regenerating..." : "Regenerate Captions"}
+            </button>
+
         </div>
     );
 }

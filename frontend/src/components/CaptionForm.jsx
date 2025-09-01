@@ -1,14 +1,14 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import axios from "axios";
-import { Image, Loader2 } from "lucide-react";
+import { Image, Loader2, RefreshCcw } from "lucide-react";
 
-function CaptionForm({ setCaptions }) {
+
+function CaptionForm({ setCaptions,setGenerateFn,setLoading,loading }) {
     const [imageUrl, setImageUrl] = useState("");
     const [style, setStyle] = useState("");
-    const [loading, setLoading] = useState(false);
+    
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const generateCaption = async () => {
         setLoading(true);
 
         try {
@@ -23,7 +23,22 @@ function CaptionForm({ setCaptions }) {
         } finally {
             setLoading(false);
         }
+    }
+
+    useEffect(() => {
+        if (setGenerateFn) {
+            setGenerateFn(() => generateCaption);
+        }
+    }, [imageUrl, style]);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        await generateCaption();
+        
     };
+    const handleRegenerate = async () => {
+        await generateCaption();
+    }
 
     return (
         <div className="flex justify-center items-center w-full px-6 ">
@@ -77,7 +92,21 @@ function CaptionForm({ setCaptions }) {
                         "Generate Captions"
                     )}
                 </button>
+
+                
+
+                {/* Regenerate Button */}
+                {/* <button
+                    type="button"
+                    onClick={handleRegenerate}
+                    disabled={loading || !imageUrl}
+                    className="flex-1 bg-gray-200 text-gray-700 font-semibold px-4 py-3 rounded-lg hover:bg-gray-300 transition flex justify-center items-center gap-2"
+                >
+                    <RefreshCcw className="w-5 h-5" />
+                    {loading ? "..." : "Regenerate"}
+                </button> */}
             </form>
+            
         </div>
     );
 }
